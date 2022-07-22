@@ -1,19 +1,33 @@
-import pandas as pd
-import numpy as np
-import matplotlib as mt
 import csv
+import os
+
+"""
+Created on Fri July, 22 2022 11:14:35
+Convert Data Files to CSV files
+@author: Giorgio-Matessi
+
+"""
+
+inputDirPath = input("Path of Directory: ") 
+outputDirPath = input("Output Directory: ")
+
+if not os.path.isdir(outputDirPath):
+    print("Directory does not exist. Creating Directory.")
+    os.mkdir(outputDirPath)
 
 
-# path = input("Path: ")
-# path = path.replace('\\','/')
-# print(path)
+for filename in os.listdir(inputDirPath):
+   with open(os.path.join(inputDirPath, filename), 'r') as csv_file: 
+        csv_reader = csv.reader(csv_file, delimiter=' ')
 
-with open('C:\\Users\\giorg\\Desktop\\Computer Science\\Research\\VE_Research\\Code\\CitcomVE\\Data\\CASE100_P\\c02.topo_s_00438.dat', 'r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    newFileName = input("Enter New File Name: ")
+        name = outputDirPath + '/' + os.path.basename(filename) + ".csv"
 
-    with open("newFile.csv", 'w') as new_file:
-        csv_writer = csv.writer(new_file, delimiter=',')
+        print(name)
         
-        for line in csv_reader:
-            csv_writer.writerow(line)
+        with open(name, 'w', newline='') as new_file:
+            csv_writer = csv.writer(new_file, delimiter=',')
+        
+            for line in csv_reader:
+                print(line)
+                csv_writer.writerow(line)
+print("Done.")
