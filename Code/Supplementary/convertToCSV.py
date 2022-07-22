@@ -11,8 +11,14 @@ Notes:
 
 """
 
-inputDirPath = input("Path of Directory: ") 
+inputDirPath = input("Path of Directory: ")
+
+if '\\' in inputDirPath:
+    inputDirPath.replace('\\','/')
+
 outputDirPath = input("Output Directory: ")
+if '\\' in outputDirPath:
+    outputDirPath.replace('\\','/')
 
 # Checks for output folder existance 
 if not os.path.isdir(outputDirPath):
@@ -22,18 +28,17 @@ if not os.path.isdir(outputDirPath):
 
 
 for filename in os.listdir(inputDirPath): #Runs through all files in a directory
-   with open(os.path.join(inputDirPath, filename), 'r') as csv_file: 
+    with open(os.path.join(inputDirPath, filename), 'r') as csv_file: 
         csv_reader = csv.reader(csv_file, delimiter=' ') # Reads file 
 
         name = outputDirPath + '/' + os.path.basename(filename) + ".csv" # Stores name of file
 
-        print(name)
-        
         with open(name, 'w', newline='') as new_file: 
             csv_writer = csv.writer(new_file, delimiter=',') # Rewrites file to have a comma delimiter 
         
             for line in csv_reader:
-                print(line)
                 csv_writer.writerow(line)
-                
+
+    print(os.path.basename(filename))
+
 print("Done.")
