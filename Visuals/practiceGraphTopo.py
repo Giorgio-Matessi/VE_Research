@@ -1,9 +1,13 @@
 """
 Created on Fri July, 22 2022 12:55:33
 
-Practice Graphing 
+Practice Graphing Topgraphy 
 
 @author: Giorgio-Matessi
+
+Notes:
+    - No espcially useful data
+    - Just for practice 
 
 """
 import matplotlib.pyplot as plt
