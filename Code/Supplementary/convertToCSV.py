@@ -13,12 +13,15 @@ Notes:
 
 inputDirPath = input("Path of Directory: ")
 
-if '\\' in inputDirPath:
+if '\\' in inputDirPath or '\"' in inputDirPath:
     inputDirPath.replace('\\','/')
+    inputDirPath.replace('\"','')
+    
 
 outputDirPath = input("Output Directory: ")
-if '\\' in outputDirPath:
+if '\\' in outputDirPath or '\"' in outputDirPath:
     outputDirPath.replace('\\','/')
+    outputDirPath.replace('\"','')
 
 # Checks for output folder existance 
 if not os.path.isdir(outputDirPath):
