@@ -6,28 +6,34 @@ Created on Fri July, 22 2022 11:14:35
 Convert Data Files to CSV files
 @author: Giorgio-Matessi
 
+Notes:
+    - Windows 10+ only
+
 """
 
 inputDirPath = input("Path of Directory: ") 
 outputDirPath = input("Output Directory: ")
 
+# Checks for output folder existance 
 if not os.path.isdir(outputDirPath):
     print("Directory does not exist. Creating Directory.")
+    input("Press Enter to continue...")
     os.mkdir(outputDirPath)
 
 
-for filename in os.listdir(inputDirPath):
+for filename in os.listdir(inputDirPath): #Runs through all files in a directory
    with open(os.path.join(inputDirPath, filename), 'r') as csv_file: 
-        csv_reader = csv.reader(csv_file, delimiter=' ')
+        csv_reader = csv.reader(csv_file, delimiter=' ') # Reads file 
 
-        name = outputDirPath + '/' + os.path.basename(filename) + ".csv"
+        name = outputDirPath + '/' + os.path.basename(filename) + ".csv" # Stores name of file
 
         print(name)
         
-        with open(name, 'w', newline='') as new_file:
-            csv_writer = csv.writer(new_file, delimiter=',')
+        with open(name, 'w', newline='') as new_file: 
+            csv_writer = csv.writer(new_file, delimiter=',') # Rewrites file to have a comma delimiter 
         
             for line in csv_reader:
                 print(line)
                 csv_writer.writerow(line)
+                
 print("Done.")
