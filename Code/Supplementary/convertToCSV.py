@@ -11,17 +11,23 @@ Notes:
 
 """
 
-inputDirPath = input("Path of Directory: ")
+inputDirPath = input("Path of Input Directory: ")
 
 if '\\' in inputDirPath or '\"' in inputDirPath:
     inputDirPath.replace('\\','/')
     inputDirPath.replace('\"','')
+
+if not os.path.isdir(inputDirPath):
+    print("Directory does not exist.")
+    exit()   
     
 
 outputDirPath = input("Output Directory: ")
 if '\\' in outputDirPath or '\"' in outputDirPath:
     outputDirPath.replace('\\','/')
     outputDirPath.replace('\"','')
+
+
 
 # Checks for output folder existance 
 if not os.path.isdir(outputDirPath):
