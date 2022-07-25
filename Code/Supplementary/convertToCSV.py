@@ -47,12 +47,22 @@ for filename in os.listdir(inputDirPath): #Runs through all files in a directory
 
         name = outputDirPath + '/' + os.path.basename(filename) + ".csv" # Stores name of file
 
-        with open(name, 'w', newline='') as new_file: 
-            new_file.write("First,Second,Third,Fourth\n")
-            csv_writer = csv.writer(new_file, delimiter=',') # Rewrites file to have a comma delimiter 
-            
-            for line in csv_reader:
-                csv_writer.writerow(line)
+        # Ignores velo file due to inconsistency 
+        if not "velo" in name:     
+            with open(name, 'w', newline='') as new_file: 
+
+                # Set Headers:
+                if "topo" in name:
+                    new_file.write("xCor,zCor,zPrime,ignore1,ignore2\n")
+                elif "stress" in name:
+                    new_file.write("stress,dissipation,viscosity\n")
+                else:
+                    new_file.write("First,Second,Third,Fourth\n")
+
+                csv_writer = csv.writer(new_file, delimiter=',') # Rewrites file to have a comma delimiter 
+                
+                for line in csv_reader:
+                    csv_writer.writerow(line)
 
     print(os.path.basename(filename))
 
