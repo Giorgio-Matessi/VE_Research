@@ -70,7 +70,7 @@
 	wdensity=0.0
 	density=3330.0
 	core_density=7150.0
-	shearmodulus=5e10
+	shearmodulus=5e11
 	refvisc=1.0e21
 	gravacc=10.0
 	ReferenceT=1350.0 
