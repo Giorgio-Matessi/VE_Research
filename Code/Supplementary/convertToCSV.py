@@ -43,7 +43,7 @@ if not os.path.isdir(outputDirPath):
 
 for filename in os.listdir(inputDirPath): #Runs through all files in a directory
     with open(os.path.join(inputDirPath, filename), 'r') as csv_file: 
-        csv_reader = csv.DictReader(csv_file, delimiter=' ') # Reads file 
+        csv_reader = csv.reader(csv_file, delimiter=' ') # Reads file 
 
         name = outputDirPath + '/' + os.path.basename(filename) + ".csv" # Stores name of file
 
@@ -56,11 +56,11 @@ for filename in os.listdir(inputDirPath): #Runs through all files in a directory
                     new_file.write("xCor,zCor,zPrime,ignore1,ignore2\n")
                 elif "stress" in name:
                     new_file.write("stress,dissipation,viscosity\n")
+                    next(csv_reader)
                 else:
                     new_file.write("First,Second,Third,Fourth\n")
 
-                csv_writer = csv.writer(new_file, delimiter=',') # Rewrites file to have a comma delimiter 
-                
+                csv_writer = csv.writer(new_file, delimiter=',') # Rewrites file to have a comma delimiter                 
                 for line in csv_reader:
                     csv_writer.writerow(line)
 
