@@ -57,6 +57,8 @@ for filename in os.listdir(inputDirPath): #Runs through all files in a directory
                 elif "stress" in name:
                     new_file.write("stress,dissipation,viscosity\n")
                     next(csv_reader)
+                elif "time" in name and not "step" in name and not "topo" in name:
+                    new_file.write("timestep,time,tot_diss,tot_elast,tot_elast+diss,tot_work,diss,elastic_enrg,work\n")
                 else:
                     new_file.write("First,Second,Third,Fourth\n")
 
